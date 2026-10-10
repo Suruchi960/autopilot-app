@@ -37,9 +37,9 @@ spec:
           image: suruchi960/autopilot-app:latest
           env:
             - name: APP_VERSION
-              value: "v2"
+              value: "v3-bad"
             - name: ERROR_RATE
-              value: "0"
+              value: "0.5"
           ports:
             - containerPort: 5000
           readinessProbe:
