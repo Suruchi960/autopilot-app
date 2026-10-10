@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: autopilot-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: autopilot-app
