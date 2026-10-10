@@ -1,12 +1,32 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: autopilot-app
 spec:
-  replicas: 3
+  replicas: 4
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: autopilot-app
+  strategy:
+    canary:
+      steps:
+        - setWeight: 25
+        - analysis:
+            templates:
+              - templateName: error-rate
+            args:
+              - name: canary-hash
+                valueFrom:
+                  podTemplateHashValue: Latest
+        - setWeight: 50
+        - analysis:
+            templates:
+              - templateName: error-rate
+            args:
+              - name: canary-hash
+                valueFrom:
+                  podTemplateHashValue: Latest
   template:
     metadata:
       labels:
@@ -15,6 +35,11 @@ spec:
       containers:
         - name: app
           image: suruchi960/autopilot-app:latest
+          env:
+            - name: APP_VERSION
+              value: "v1"
+            - name: ERROR_RATE
+              value: "0"
           ports:
             - containerPort: 5000
           readinessProbe:
