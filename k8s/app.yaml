@@ -37,7 +37,7 @@ spec:
           image: suruchi960/autopilot-app:latest
           env:
             - name: APP_VERSION
-              value: "v1"
+              value: "v2"
             - name: ERROR_RATE
               value: "0"
           ports:
