@@ -66,3 +66,8 @@ flowchart LR
 2. Install ArgoCD and Argo Rollouts, using `kubectl apply --server-side`.
 3. Deploy Prometheus with `monitoring/prometheus.yaml` and `monitoring/prometheus-config.yaml`.
 4. Apply `argocd/application.yaml`. ArgoCD then deploys everything in `k8s/`.
+
+## Demo videos
+
+Watch a bad release get caught and rolled back: https://drive.google.com/drive/folders/1uScohEOBgu-l8mDgMNB6oJ0ccAfC4sOk?usp=drive_link
+
